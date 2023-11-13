@@ -2,19 +2,20 @@
 
 SELECT COUNT(*) AS `numero_studenti`
 FROM `students`
-WHERE `date_of_birth` LIKE '1990%';
+WHERE YEAR(`date_of_birth`) = 1990;
 
 
 
-3. Selezionare tutti gli studenti che hanno pi˘ di 30 anni
+3. Selezionare tutti gli studenti che hanno più di 30 anni
 
 SELECT COUNT(*) AS `numero_studenti`
 FROM `students`
-WHERE YEAR(`date_of_birth`) < '1993';
+WHERE YEAR(CURRENT_TIMESTAMP) - YEAR(`date_of_birth`) > 30
+ORDER BY `date_of_birth`DESC;
 
 
 
-2. Selezionare tutti i corsi che valgono pi˘ di 10 crediti
+2. Selezionare tutti i corsi che valgono più di 10 crediti 
 
 SELECT COUNT(*) `numero_corsi_up_10_crediti`
 FROM `courses`
@@ -53,7 +54,7 @@ WHERE `level` = 'magistrale';
 
 
 
-7. Da quanti dipartimenti Ë composta l'universit‡?
+7. Da quanti dipartimenti è composta l'università?
 
 SELECT COUNT(*) AS `numero_departimenti`
 FROM `departments`
@@ -79,7 +80,7 @@ BONUS
 1. Contare quanti iscritti ci sono stati ogni anno
 
 SELECT COUNT(*) AS  `numero_studenti`, YEAR(`enrolment_date`) AS `anno_di_iscrizione`
-FROM `students`
+FROM `students` 
 GROUP BY `anno_di_iscrizione`;
 
 
